@@ -8,12 +8,21 @@ html(lang="en")
     body
         .container-fluid
             .row
-                .col-md-12.text-center
-                    .card
-                        .card-header.h1
-                            | LOGIN
-                        .card-body
-                            img(src="/images/logo.png")
+                .d-flex.justify-content-center
+                    .col-md-6.text-center
+                        #login.card.mt-5
+                            .card-header.h1.bg-secondary.text-white
+                                | LOGIN
+                            .card-body.bg-dark.text-white
+                                .row
+                                    .d-flex.justify-content-center
+                                        img(src="/images/logo.png" style="height:20vh; width:35vw")
+                                .row.mt-4
+                                    .col
+                                        input#username.form-control.form-control-lg(type='text' placeholder="Username")
+                                    .col
+                                        input#password.form-control.form-control-lg(type='text' placeholder="Password")
+
                             
 
         
