@@ -9,7 +9,7 @@
     border: black;
     border-width: "20px";
     display: none;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 #login_body {
@@ -22,7 +22,7 @@
 
 #entrar {
     font-size:7vh;
-    font-weight: bold;
+    font-weight: bolder;
     border: black;
     display: none;
 }
