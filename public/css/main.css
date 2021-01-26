@@ -1,0 +1,28 @@
+#logo {
+    height:50vh; 
+    width:75vw;
+}
+
+#username, #password {
+    font-size:7vh;
+    background-color: #78A2CC;
+    border: black;
+    border-width: "20px";
+    display: none;
+    font-weight: bold;
+}
+
+#login_body {
+    background-color: #232323;
+}
+
+#logo, #user_pass {
+    display: none;
+}
+
+#entrar {
+    font-size:7vh;
+    font-weight: bold;
+    border: black;
+    display: none;
+}

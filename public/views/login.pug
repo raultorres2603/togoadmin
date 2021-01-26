@@ -5,23 +5,24 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Login
         include links.pug
-    body
+    body#login_body
         .container-fluid
             .row
                 .d-flex.justify-content-center
                     .col-md-6.text-center
-                        #login.card.mt-5
-                            .card-header.h1.bg-secondary.text-white
-                                | LOGIN
-                            .card-body.bg-dark.text-white
-                                .row
-                                    .d-flex.justify-content-center
-                                        img(src="/images/logo.png" style="height:20vh; width:35vw")
-                                .row.mt-4
-                                    .col
-                                        input#username.form-control.form-control-lg(type='text' placeholder="Username")
-                                    .col
-                                        input#password.form-control.form-control-lg(type='password' placeholder="Password")
+                        .row
+                            .d-flex.justify-content-center
+                                img#logo(src="/images/logo.png")
+            form(action="/log", method="post")
+                .row.mt-4
+                    .col
+                        input#username.form-control.form-control-lg.text-center(type='text' oninput="compLog($('#username').val(), $('#password').val())")
+                    .col
+                        input#password.form-control.form-control-lg.text-center(type='password' oninput="compLog($('#username').val(), $('#password').val())")
+                .row.mt-4
+                    .text-center
+                        button#entrar.btn.btn-success.btn-lg.text-dark
+                            | ENTRAR AL SISTEMA
 
                             
 
