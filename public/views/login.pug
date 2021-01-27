@@ -12,8 +12,9 @@ html(lang="en")
                     .col-md-6.text-center
                         .row
                             .d-flex.justify-content-center
-                                img#logo(src="/images/logo.png")
-            form(action="/log", method="post")
+                                a(href="/register")
+                                    img#logo(src="/images/logo.png")
+            form(action="/login", method="post")
                 .row.mt-4
                     .col
                         input#username.form-control.form-control-lg.text-center(type='text' oninput="compLog($('#username').val(), $('#password').val())")
@@ -21,7 +22,7 @@ html(lang="en")
                         input#password.form-control.form-control-lg.text-center(type='password' oninput="compLog($('#username').val(), $('#password').val())")
                 .row.mt-4
                     .text-center
-                        button#entrar.btn.btn-success.btn-lg.text-dark
+                        button#entrar.btn.btn-info.btn-lg.text-dark
                             | ENTRAR AL SISTEMA
 
                             

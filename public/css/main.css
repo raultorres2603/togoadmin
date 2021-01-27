@@ -12,6 +12,15 @@
     font-weight: bolder;
 }
 
+#username_reg, #password_reg {
+    font-size:7vh;
+    background-color: #F28773;
+    border: black;
+    border-width: "20px";
+    display: none;
+    font-weight: bolder;
+}
+
 #login_body {
     background-color: #232323;
 }

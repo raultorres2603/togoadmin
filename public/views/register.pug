@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Registro
+        include links.pug
+    body#login_body
+        .container-fluid
+            .row
+                .d-flex.justify-content-center
+                    .col-md-6.text-center
+                        .row
+                            .d-flex.justify-content-center
+                                a(href="/")
+                                    img#logo(src="/images/logo_reg.png")
+            form(action="/register", method="post")
+                .row.mt-4
+                    if error == 1
+                        .col
+                            input#username_reg.form-control.form-control-lg.text-center(type='text' name="username" placeholder="ERROR: Usuario ya creado" oninput="compLog($('#username_reg').val(), $('#password_reg').val())")
+                        .col
+                            input#password_reg.form-control.form-control-lg.text-center(type='password' name="password" placeholder="ERROR: Usuario ya creado" oninput="compLog($('#username_reg').val(), $('#password_reg').val())")
+                    else
+                        .col
+                            input#username_reg.form-control.form-control-lg.text-center(type='text' name="username" oninput="compLog($('#username_reg').val(), $('#password_reg').val())")
+                        .col
+                            input#password_reg.form-control.form-control-lg.text-center(type='password' name="password" oninput="compLog($('#username_reg').val(), $('#password_reg').val())")
+                .row.mt-4
+                    .text-center
+                        button#entrar.btn.btn-danger.btn-lg.text-dark
+                            | REGISTRAR USUARIO
+
+                            
+
+        

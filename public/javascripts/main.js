@@ -3,6 +3,8 @@ $(document).ready(function(){
     setTimeout(function() {
         $('#username').fadeIn(1500);
         $('#password').fadeIn(1500);
+        $('#username_reg').fadeIn(1500);
+        $('#password_reg').fadeIn(1500);
     },1000);
 });
 
