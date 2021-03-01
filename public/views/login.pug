@@ -17,9 +17,15 @@ html(lang="en")
             form(action="/login", method="post")
                 .row.mt-4
                     .col
-                        input#username.form-control.form-control-lg.text-center(type='text' oninput="compLog($('#username').val(), $('#password').val())")
+                        if error == 1
+                            input#username.form-control.form-control-lg.text-center(type='text' name="username" placeholder="Error!" oninput="compLog($('#username').val(), $('#password').val())")
+                        else
+                            input#username.form-control.form-control-lg.text-center(type='text' name="username" oninput="compLog($('#username').val(), $('#password').val())")
                     .col
-                        input#password.form-control.form-control-lg.text-center(type='password' oninput="compLog($('#username').val(), $('#password').val())")
+                        if error == 1
+                            input#password.form-control.form-control-lg.text-center(type='password' name="password" placeholder="Error!" oninput="compLog($('#username').val(), $('#password').val())")
+                        else 
+                            input#password.form-control.form-control-lg.text-center(type='password' name="password" oninput="compLog($('#username').val(), $('#password').val())")
                 .row.mt-4
                     .text-center
                         button#entrar.btn.btn-info.btn-lg.text-dark
