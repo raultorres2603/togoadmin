@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#logo").fadeIn(1000);
+    $('#menu_ini').fadeIn(2750);
     setTimeout(function() {
         $('#username').fadeIn(1500);
         $('#password').fadeIn(1500);

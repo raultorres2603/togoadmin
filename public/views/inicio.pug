@@ -5,4 +5,18 @@ html(lang="en")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Inicio
-    body 
+        include links.pug
+    body#login_body 
+        .container-fluid
+            .row
+                .d-flex.justify-content-center
+                    img#logo_ini(src="/images/logo.png")
+            .row
+                #menu_ini.col-md-12
+                    .row
+                        .col-md-6
+                            .d-flex.justify-content-center
+                                img#servidor.mt-4(src="/images/servidor.png")
+                        .col-md-6
+                            .d-flex.justify-content-center
+                                img#cliente.mt-4(src="/images/cliente.png")

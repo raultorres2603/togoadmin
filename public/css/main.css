@@ -1,37 +1,56 @@
 #logo {
-    height:50vh; 
-    width:75vw;
+  height: 50vh;
+  width: 75vw;
 }
 
-#username, #password {
-    font-size:7vh;
-    background-color: #78A2CC;
-    border: black;
-    border-width: "20px";
-    display: none;
-    font-weight: bolder;
+#username,
+#password {
+  font-size: 7vh;
+  background-color: #78a2cc;
+  border: black;
+  border-width: "20px";
+  display: none;
+  font-weight: bolder;
 }
 
-#username_reg, #password_reg {
-    font-size:7vh;
-    background-color: #F28773;
-    border: black;
-    border-width: "20px";
-    display: none;
-    font-weight: bolder;
+#username_reg,
+#password_reg {
+  font-size: 7vh;
+  background-color: #f28773;
+  border: black;
+  border-width: "20px";
+  display: none;
+  font-weight: bolder;
 }
 
 #login_body {
-    background-color: #232323;
+  background-color: #232323;
 }
 
-#logo, #user_pass {
-    display: none;
+#logo,
+#user_pass {
+  display: none;
 }
 
 #entrar {
-    font-size:7vh;
-    font-weight: bolder;
-    border: black;
+  font-size: 7vh;
+  font-weight: bolder;
+  border: black;
+  display: none;
+}
+
+#servidor,
+#cliente {
+  width: 35vw;
+  height: 65vh;
+  filter: drop-shadow(0 0 5px rgb(0, 193, 252));
+}
+
+#menu_ini {
     display: none;
+}
+
+#logo_ini {
+    height: 25vh;
+    width: 45vw;
 }
