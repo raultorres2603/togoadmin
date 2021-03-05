@@ -15,7 +15,7 @@ html(lang="en")
                                 a(href="/register")
                                     img#logo(src="/images/logo.png")
             form(action="/login", method="post")
-                .row.mt-4
+                .row.mt-5
                     .col
                         if error == 1
                             input#username.form-control.form-control-lg.text-center(type='text' name="username" placeholder="Error!" oninput="compLog($('#username').val(), $('#password').val())")

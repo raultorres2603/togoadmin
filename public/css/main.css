@@ -28,7 +28,8 @@
 }
 
 #logo,
-#user_pass {
+#user_pass,
+#menu_ini {
   display: none;
 }
 
@@ -41,16 +42,15 @@
 
 #servidor,
 #cliente {
-  width: 35vw;
-  height: 65vh;
-  filter: drop-shadow(0 0 25px rgb(61, 207, 252));
-}
-
-#menu_ini {
-    display: none;
+  width: 49vw;
+  height: 100vh;
 }
 
 #logo_ini {
     height: 25vh;
     width: 45vw;
+}
+
+#inicio_body {
+  background-color: black;
 }

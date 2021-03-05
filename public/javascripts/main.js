@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $("#logo").fadeIn(1000);
-    $('#menu_ini').fadeIn(2750);
+    $('#menu_ini').fadeIn(3000);
     setTimeout(function() {
         $('#username').fadeIn(1500);
         $('#password').fadeIn(1500);
@@ -15,4 +15,17 @@ function compLog(username, password) {
     } else {
         $('#entrar').fadeOut(1000);
     }
+}
+
+function ocultarImg(img) {
+    $('#' + img).fadeToggle(1000);
+    if (img == "cliente") {
+        $('#desc_cliente').fadeIn(1500);
+    } else {
+
+    }
+}
+
+function mostrarImg(img) {
+    $('#' + img).fadeIn(1000);
 }
