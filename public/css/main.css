@@ -46,6 +46,10 @@
   height: 100vh;
 }
 
+#desc_cliente {
+  display: none;
+}
+
 #logo_ini {
     height: 25vh;
     width: 45vw;

@@ -12,7 +12,13 @@ html(lang="en")
                 .col-md-12
                     #menu_ini
                         .row
-                            #servidor_col.col-md-6 
+                            #servidor_col.col-6
                                 img#servidor(src="/images/servidor.jpg" onclick="ocultarImg('cliente')")
-                            #cliente_col.col-md-6
+                                #desc_cliente 
+                                    .row
+                                        .d-flex.justify-content-center
+                                            span.h1.titulo_cliente.text-white
+                                    .row 
+                                        span.h2.informacion_cli.text-white
+                            #cliente_col.col-6
                                 img#cliente(src="/images/cliente.jpg" onclick="ocultarImg('servidor')" )
