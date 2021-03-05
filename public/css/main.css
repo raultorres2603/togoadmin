@@ -43,7 +43,7 @@
 #cliente {
   width: 35vw;
   height: 65vh;
-  filter: drop-shadow(0 0 5px rgb(0, 193, 252));
+  filter: drop-shadow(0 0 25px rgb(61, 207, 252));
 }
 
 #menu_ini {
