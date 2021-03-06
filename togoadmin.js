@@ -7,7 +7,7 @@ var session = require("express-session");
 var mysql = require("mysql");
 require("dotenv").config();
 const bodyParser = require("body-parser");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const port = 3000;
 
