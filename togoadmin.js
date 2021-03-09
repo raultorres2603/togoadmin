@@ -5,6 +5,7 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 var session = require("express-session");
 var mysql = require("mysql");
+var compression = require('compression');
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
@@ -28,6 +29,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "pug");
+app.use(compression())
 
 // GET
 app.get("/", (req, res) => {

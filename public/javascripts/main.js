@@ -21,13 +21,13 @@ function ocultarImg(img) {
   $("#" + img).fadeToggle(1000);
   if (img == "cliente") {
     $("#desc_cliente").fadeToggle(1500, () => {
-      new Typed(".titulo_cliente", {
-        strings: [`Cliente`],
+      new Typed(".titulo_servidor", {
+        strings: [`Servidor`],
         typeSpeed: 50,
         onComplete: function(self) {
-            new Typed(".informacion_cli", {
-                strings: ["Visualizar información del cliente"],
-                typeSpeed: 100,
+            new Typed(".interfaces_serv", {
+                strings: ["Interfaces de red:"],
+                typeSpeed: 50,
             })
         }
       });
