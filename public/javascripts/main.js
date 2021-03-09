@@ -19,16 +19,15 @@ function compLog(username, password) {
 
 function ocultarImg(img) {
   $("#" + img).fadeToggle(1000);
-  if (img == "servidor") {
+  if (img == "cliente") {
     $("#desc_cliente").fadeToggle(1500, () => {
       new Typed(".titulo_cliente", {
         strings: [`Cliente`],
         typeSpeed: 50,
         onComplete: function(self) {
             new Typed(".informacion_cli", {
-                strings: ["Cargando..."],
-                typeSpeed: 50,
-                startDelay: 1000
+                strings: ["Visualizar información del cliente"],
+                typeSpeed: 100,
             })
         }
       });
