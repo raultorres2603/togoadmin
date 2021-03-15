@@ -6,7 +6,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Inicio
         include links.pug
-    body#inicio_body 
+    body#inicio_body.bg-dark
         .container-fluid
             .row
                 .col-md-12
@@ -14,17 +14,45 @@ html(lang="en")
                         .row
                             #servidor_col.col-6
                                 img#servidor(src="/images/servidor.jpg" onclick="ocultarImg('cliente')")
-                                #desc_cliente 
+                                #desc_cliente
                                     .row
-                                        .d-flex.justify-content-center
-                                            span.h1.titulo_cliente.text-white
+                                        .p-3.mb-2.bg-info.text-white.h2.text-center Cliente
                                     .row 
-                                        span.h4.informacion_cli.text-white
+                                        
+
                             #cliente_col.col-6
                                 img#cliente(src="/images/cliente.jpg" onclick="ocultarImg('servidor')" )
-                                #desc_servidor 
-                                    .row
-                                        .d-flex.justify-content-center
-                                            span.h1.titulo_servidor.text-white
+                                #desc_servidor
                                     .row 
-                                        span.h4.interfaces_serv.text-white
+                                        .p-3.mb-2.bg-info.text-white.h2.text-center Servidor
+                                    .row
+                                        #secciones.p-3.mb-2.bg-light.text-dark.h4 Esquema
+                                        .col-md-6
+                                            .row 
+                                                h5.text-white.mb-1 Dispositivo: #{release}
+                                        .col-md-6
+                                            .row 
+                                                h5.text-white.mb-1 Arquitectura: #{arch}
+                                    .row
+                                        #secciones.p-3.mb-2.bg-light.text-dark.h4 CPU
+                                        .row    
+                                            .col-md-6 
+                                                h5.text-white.mb-1 Modelo: #{cpus[0].model}
+                                            .col-md-6
+                                                h5.text-white.mb-1 Velocidad: #{cpus[0].speed / 1000} GHz x #{cpus.length}
+                                    .row
+                                        #secciones.p-3.mb-2.bg-light.text-dark.h4 Sistema operativo
+                                        .col-md-6
+                                            .row 
+                                                h5.text-white.mb-1 Plataforma: #{plataforma}
+                                        .col-md-6
+                                            .row 
+                                                h5.text-white.mb-1 Endianess: #{endianess}
+                                    .row
+                                        #secciones.p-3.mb-2.bg-light.text-dark.h4 Memoria RAM
+                                        .col-md-6
+                                            .row
+                                                h5.text-white.mb-1 Total: #{Math.trunc(totalMem / 1073741824)} GB
+                                        .col-md-6
+                                            .row 
+                                                h5.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB

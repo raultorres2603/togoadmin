@@ -18,21 +18,11 @@ function compLog(username, password) {
 }
 
 function ocultarImg(img) {
-  $("#" + img).fadeToggle(1000);
-  if (img == "cliente") {
-    $("#desc_cliente").fadeToggle(1500, () => {
-      new Typed(".titulo_servidor", {
-        strings: [`Servidor`],
-        typeSpeed: 50,
-        onComplete: function(self) {
-            new Typed(".interfaces_serv", {
-                strings: ["Interfaces de red:"],
-                typeSpeed: 50,
-            })
-        }
-      });
-    });
-  } else {
-      $('.titulo_cliente').html(" ")
-  }
+  $("#" + img).fadeToggle(1000, () => {
+    if (img == "cliente") {
+      $("#desc_servidor").fadeToggle(500);
+    } else {
+      $("#desc_cliente").fadeToggle(500);
+    }
+  });
 }
