@@ -23,6 +23,39 @@ function ocultarImg(img) {
       $("#desc_servidor").fadeToggle(500);
     } else {
       $("#desc_cliente").fadeToggle(500);
+      informCliente();
     }
   });
+}
+
+function informCliente() {
+  let userAgent = window.navigator.userAgent;
+  let numeroNucleos = window.navigator.hardwareConcurrency;
+  let javaEnabled;
+  if (window.navigator.javaEnabled() == true) {
+    javaEnabled = "Sí";
+  } else {
+    javaEnabled = "No";
+  }
+  let lenguajeNav = window.navigator.language;
+  let plataformaNavegador = window.navigator.platform;
+  let cookiesEnabled;
+  if (window.navigator.cookieEnabled == true) {
+    cookiesEnabled = "Sí";
+  } else {
+    cookiesEnabled = "No";
+  }
+  let pluginNavegador = window.navigator.plugins;
+  let vibrar = window.navigator.vibrate(500);
+
+  $('#codigoNav').text(`${userAgent}`);
+  $('#javaEn').text(`Java activado: ${javaEnabled}`);
+  $('#lenguajeNav').text(`Lenguaje: ${lenguajeNav}`);
+  $('#plataformaNav').text(`Plataforma: ${plataformaNavegador}`);
+  $(`#cookiesEnabled`).text(`Cookies: ${cookiesEnabled}`);
+  for (let i = 0; i < pluginNavegador.length; i++) {
+    const element = pluginNavegador[i].name;
+    document.getElementById('pluginsNav').innerText = document.getElementById('pluginsNav').innerText + "" + element;
+    
+  }
 }
