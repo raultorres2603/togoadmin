@@ -53,9 +53,11 @@ function informCliente() {
   $('#lenguajeNav').text(`Lenguaje: ${lenguajeNav}`);
   $('#plataformaNav').text(`Plataforma: ${plataformaNavegador}`);
   $(`#cookiesEnabled`).text(`Cookies: ${cookiesEnabled}`);
+  $('#cpus').text(`Nº de CPU's: ${numeroNucleos}`);
+  document.getElementById('pluginsNav').innerText = "";
   for (let i = 0; i < pluginNavegador.length; i++) {
     const element = pluginNavegador[i].name;
-    document.getElementById('pluginsNav').innerText = document.getElementById('pluginsNav').innerText + "" + element;
+    document.getElementById('pluginsNav').innerText = document.getElementById('pluginsNav').innerText + " " + element;
     
   }
 }
