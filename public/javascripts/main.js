@@ -58,6 +58,5 @@ function informCliente() {
   for (let i = 0; i < pluginNavegador.length; i++) {
     const element = pluginNavegador[i].name;
     document.getElementById('pluginsNav').innerText = document.getElementById('pluginsNav').innerText + " " + element;
-    
   }
 }
