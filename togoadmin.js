@@ -3,8 +3,12 @@ const express = require("express");
 const app = express();
 // Require de la librería de parseado de path
 var path = require("path");
+var fs = require("fs");
 // Require de HTTP
-const http = require("http").createServer(app);
+const http = require("https").createServer({
+  key: fs.readFileSync('/etc/ssl/private/togo-certificado.key'),
+  cert: fs.readFileSync('/etc/ssl/certs/togo-certificado.crt')
+},app);
 // Libreria de socket
 const io = require("socket.io")(http);
 // Require de la libreria O.S

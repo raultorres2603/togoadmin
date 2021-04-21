@@ -48,6 +48,7 @@ function informCliente() {
   let pluginNavegador = window.navigator.plugins;
   let vibrar = window.navigator.vibrate(500);
 
+  // Integración de las variables en HTML
   $('#codigoNav').text(`${userAgent}`);
   $('#javaEn').text(`Java activado: ${javaEnabled}`);
   $('#lenguajeNav').text(`Lenguaje: ${lenguajeNav}`);
