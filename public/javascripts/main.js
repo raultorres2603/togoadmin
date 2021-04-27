@@ -49,15 +49,20 @@ function informCliente() {
   let vibrar = window.navigator.vibrate(500);
 
   // Integración de las variables en HTML
-  $('#codigoNav').text(`${userAgent}`);
-  $('#javaEn').text(`Java activado: ${javaEnabled}`);
-  $('#lenguajeNav').text(`Lenguaje: ${lenguajeNav}`);
-  $('#plataformaNav').text(`Plataforma: ${plataformaNavegador}`);
+  $("#codigoNav").text(`${userAgent}`);
+  $("#javaEn").text(`Java activado: ${javaEnabled}`);
+  $("#lenguajeNav").text(`Lenguaje: ${lenguajeNav}`);
+  $("#plataformaNav").text(`Plataforma: ${plataformaNavegador}`);
   $(`#cookiesEnabled`).text(`Cookies: ${cookiesEnabled}`);
-  $('#cpus').text(`Nº de CPU's: ${numeroNucleos}`);
-  document.getElementById('pluginsNav').innerText = "";
+  $("#cpus").text(`Nº de CPU's: ${numeroNucleos}`);
+  document.getElementById("pluginsNav").innerText = "";
   for (let i = 0; i < pluginNavegador.length; i++) {
     const element = pluginNavegador[i].name;
-    document.getElementById('pluginsNav').innerText = document.getElementById('pluginsNav').innerText + " " + element;
+    document.getElementById("pluginsNav").innerText =
+      document.getElementById("pluginsNav").innerText + " " + element;
   }
+}
+
+function logout() {
+  window.location.href = "/logout";
 }

@@ -16,67 +16,68 @@ html(lang="en")
                                 img#servidor(src="/images/servidor.jpg" onclick="ocultarImg('cliente')")
                                 #desc_cliente
                                     .row
-                                        .p-3.mb-2.bg-info.text-white.h2.text-center Cliente
+                                        #cli_title.p-3.mb-2.bg-info.text-white.h2.text-center Cliente
                                     .row 
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Información general
                                         .col-md-12
                                             .row 
-                                                h5#codigoNav.text-white.mb-1
+                                                h5#codigoNav.informacion.text-white.mb-1
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Navegador
                                         .col-md-6
                                             .row 
-                                                h5#javaEn.text-white.mb-1
+                                                h5#javaEn.informacion.text-white.mb-1
                                         .col-md-6
                                             .row 
-                                                h5#lenguajeNav.text-white.mb-1
+                                                h5#lenguajeNav.informacion.text-white.mb-1
                                         .col-md-6
                                             .row 
-                                                h5#plataformaNav.text-white.mb-1
+                                                h5#plataformaNav.informacion.text-white.mb-1
                                         .col-md-6
                                             .row 
-                                                h5#cookiesEnabled.text-white.mb-1
+                                                h5#cookiesEnabled.informacion.text-white.mb-1
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Plugins
                                         .col-md-6
                                             .row 
-                                                h5#pluginsNav.text-white.mb-1
+                                                h5#pluginsNav.informacion.text-white.mb-1
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Dispositivo
                                         .col-md-12
                                             .row 
-                                                h5#cpus.text-white.mb-1
-
+                                                h5#cpus.informacion.text-white.mb-1
+                            .logout
+                                img#logout.align-self-center(src="/images/logout.png" onclick="logout()")
                             #cliente_col.col-6
                                 img#cliente(src="/images/cliente.jpg" onclick="ocultarImg('servidor')" )
                                 #desc_servidor
                                     .row 
-                                        .p-3.mb-2.bg-info.text-white.h2.text-center Servidor
+                                        #serv_title.p-3.mb-2.bg-info.text-white.h2.text-center Servidor
                                     .row
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Esquema
                                         .col-md-6
                                             .row 
-                                                h5.text-white.mb-1 Dispositivo: #{release}
+                                                h5.informacion.text-white.mb-1 Dispositivo: #{release}
                                         .col-md-6
                                             .row 
-                                                h5.text-white.mb-1 Arquitectura: #{arch}
+                                                h5.informacion.text-white.mb-1 Arquitectura: #{arch}
                                     .row
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 CPU
                                         .row    
                                             .col-md-6 
-                                                h5.text-white.mb-1 Modelo: #{cpus[0].model}
+                                                h5.informacion.text-white.mb-1 Modelo: #{cpus[0].model}
                                             .col-md-6
-                                                h5.text-white.mb-1 Velocidad: #{cpus[0].speed / 1000} GHz x #{cpus.length}
+                                                h5.informacion.text-white.mb-1 Velocidad: #{cpus[0].speed / 1000} GHz x #{cpus.length}
                                     .row
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Sistema operativo
                                         .col-md-6
                                             .row 
-                                                h5.text-white.mb-1 Plataforma: #{plataforma}
+                                                h5.informacion.text-white.mb-1 Plataforma: #{plataforma}
                                         .col-md-6
                                             .row 
-                                                h5.text-white.mb-1 Endianess: #{endianess}
+                                                h5.informacion.text-white.mb-1 Endianess: #{endianess}
                                     .row
                                         #secciones.p-3.mb-2.bg-light.text-dark.h4 Memoria RAM
                                         .col-md-6
                                             .row
-                                                h5.text-white.mb-1 Total: #{Math.trunc(totalMem / 1073741824)} GB
+                                                h5.informacion.text-white.mb-1 Total: #{Math.trunc(totalMem / 1073741824)} GB
                                         .col-md-6
                                             .row 
-                                                h5.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB
+                                                h5.informacion.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB

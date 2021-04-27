@@ -5,10 +5,13 @@ const app = express();
 var path = require("path");
 var fs = require("fs");
 // Require de HTTP
-const http = require("https").createServer({
-  key: fs.readFileSync('/etc/ssl/private/togo-certificado.key'),
-  cert: fs.readFileSync('/etc/ssl/certs/togo-certificado.crt')
-},app);
+const http = require("https").createServer(
+  {
+    key: fs.readFileSync("/etc/ssl/private/togo-certificado.key"),
+    cert: fs.readFileSync("/etc/ssl/certs/togo-certificado.crt"),
+  },
+  app
+);
 // Libreria de socket
 const io = require("socket.io")(http);
 // Require de la libreria O.S
@@ -90,7 +93,7 @@ app.get("/inicio", (req, res) => {
       interfaces: interfaces,
       plataforma: plataforma,
       release: release,
-      uptime: uptime
+      uptime: uptime,
     });
   }
 });
@@ -174,6 +177,11 @@ app.post("/login", (req, res) => {
       }
     });
   });
+});
+
+app.get("/logout", (req, res) => {
+  delete req.session.user;
+  res.redirect("/");
 });
 //FIN POST
 
