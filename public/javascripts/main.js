@@ -66,3 +66,7 @@ function informCliente() {
 function logout() {
   window.location.href = "/logout";
 }
+
+function mostrarModal() {
+  $('#modalServ').modal('show');
+}

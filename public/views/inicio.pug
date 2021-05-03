@@ -81,3 +81,33 @@ html(lang="en")
                                         .col-md-6
                                             .row 
                                                 h5.informacion.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB
+                                    .row 
+                                        button#botonConfiguracion.text-white.btn.btn-lg.btn-block.mt-3.btn-primary(type="button" onclick="mostrarModal()") Configuración
+            
+            #modalServ.modal.fade(tabindex='-1' role='dialog')
+                .modal-dialog.modal-xl(role='document')
+                    .modal-content
+                        #modalHeader.modal-header.bg-primary.text-white
+                            | Detalles del servidor
+                        .modal-body
+                            .h4.mb-3.text-center
+                                | Interfaces
+                            hr
+                            .row 
+                                .col.text-center 
+                                    h4 IPv4
+                                    hr
+                                .col.text-center 
+                                    h4 IPv6
+                                    hr
+                            each interfaz in interfaces
+                                .row
+                                    .col
+                                        h5.infoModal #{interfaz[0].address}
+                                        h5.infoModal #{interfaz[0].netmask}
+                                        h5.infoModal #{interfaz[0].cidr}
+                                    .col
+                                        h5.infoModal #{interfaz[1].address}
+                                        h5.infoModal #{interfaz[1].netmask}
+                                        h5.infoModal.mb-4 #{interfaz[1].cidr}
+                                

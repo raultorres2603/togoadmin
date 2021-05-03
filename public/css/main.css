@@ -89,3 +89,20 @@ body {
   width: 20vh;
   height: auto;
 }
+
+#botonConfiguracion {
+  font-size: 4vh;
+  filter: drop-shadow(0 0 0.75rem black);
+}
+
+#modalHeader {
+  font-size: 5vh;
+}
+
+#modalServ {
+  filter: drop-shadow(0 0 0.75rem black);
+}
+
+.infoModal {
+  font-size: 3vh;
+}
