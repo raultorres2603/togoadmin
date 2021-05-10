@@ -81,9 +81,14 @@ html(lang="en")
                                         .col-md-6
                                             .row 
                                                 h5.informacion.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB
-                                    .row 
-                                        button#botonConfiguracion.text-white.btn.btn-lg.btn-block.mt-3.btn-primary(type="button" onclick="mostrarModal()") Configuración
-            
+                                    .row
+                                        .col-md-6 
+                                            .row
+                                                button#botonConfiguracion.text-white.btn.btn-lg.btn-block.btn-primary.mt-3(type="button" onclick="mostrarModal('#modalServ')") Redes
+                                        .col-md-6 
+                                            .row 
+                                                button#botonConfiguracion.text-dark.btn.btn-lg.btn-block.btn-warning.mt-3(type="button" onclick="mostrarModal('#modalConf')") Configuración
+
             #modalServ.modal.fade(tabindex='-1' role='dialog')
                 .modal-dialog.modal-xl(role='document')
                     .modal-content

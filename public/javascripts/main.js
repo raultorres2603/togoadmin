@@ -67,6 +67,6 @@ function logout() {
   window.location.href = "/logout";
 }
 
-function mostrarModal() {
-  $('#modalServ').modal('show');
+function mostrarModal(modal) {
+  $(modal).modal('show');
 }

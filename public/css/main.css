@@ -92,7 +92,7 @@ body {
 
 #botonConfiguracion {
   font-size: 4vh;
-  filter: drop-shadow(0 0 0.75rem black);
+  filter: drop-shadow(0 0 0.25rem black);
 }
 
 #modalHeader {
