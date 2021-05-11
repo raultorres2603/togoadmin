@@ -115,4 +115,23 @@ html(lang="en")
                                         h5.infoModal #{interfaz[1].address}
                                         h5.infoModal #{interfaz[1].netmask}
                                         h5.infoModal.mb-4 #{interfaz[1].cidr}
-                                
+
+            #modalConf.modal.fade(tabindex='-1' role='dialog')
+                .modal-dialog.modal-xl(role='document')
+                    .modal-content
+                        #modalHeader.modal-header.bg-primary.text-white
+                            | Configuración de servicios
+                        #alertaCorreo.alert.alert-success(role="alert" style="display:none")
+
+                        .modal-body
+                            .row 
+                                h4 Configuración del servicio de correo
+                            .row.mt-1
+                                .col-auto
+                                    input#emailTogo.form-control.form-control-lg.text-center(type="email", name="emailTogo" placeholder="Email" oninput="compEmail($('#emailTogo').val(), $('#passTogo').val())")
+                                    small#emailHelp.form-text Email que usará TogoAdmin para enviarte copias de seguridad.
+                                .col-auto
+                                    input#passTogo.form-control.form-control-lg.text-center(type="password", name="passTogo" placeholder="Password" oninput="compEmail($('#emailTogo').val(), $('#passTogo').val())")
+                                    small#emailHelp.form-text Password del email introducido anteriormente.
+                                .col-auto 
+                                    button#regCorreo.btn.btn-success.btn-lg.btn-block(type="button" onclick="regCorreo($('#emailTogo').val(), $('#passTogo').val())" disabled) Registrar

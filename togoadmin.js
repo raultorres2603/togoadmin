@@ -28,6 +28,7 @@ require("dotenv").config();
 const bodyParser = require("body-parser");
 // Encriptación de datos
 const bcrypt = require("bcryptjs");
+const { connect } = require("http2");
 const saltRounds = 10;
 const port = 3000;
 
@@ -49,6 +50,54 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "pug");
 app.use(compression());
+
+// SOCKETS
+
+io.on('connection', (socket) => {
+  socket.on('regCorreo', (email, pass) => {
+    con_togo.query(`SELECT COUNT(*) as contador, email_admin FROM correo_togo`, (err, result) => {
+      if (err) console.log(err);
+      if (result[0].contador > 0) {
+        con_togo.query(`TRUNCATE TABLE correo_togo`, (err, result) => {
+          if (err) console.log(err);
+
+          var encriptar_contra = new Promise((resolve, reject) => {
+            bcrypt.genSalt(saltRounds, function (err, salt) {
+              bcrypt.hash(pass, salt, function (err, hash) {
+                if (err) reject(err);
+                resolve(hash);
+              });
+            });
+          });
+
+          encriptar_contra.then((pass_encr) => {
+            con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass_encr}')`, (err, result) => {
+              if (err) console.log(err);
+              socket.emit('regCorreo_ok', email);
+            })
+          })
+          
+        })
+      } else {
+        var encriptar_contra = new Promise((resolve, reject) => {
+          bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(pass, salt, function (err, hash) {
+              if (err) reject(err);
+              resolve(hash);
+            });
+          });
+        });
+
+        encriptar_contra.then((pass_encr) => {
+          con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass_encr}')`, (err, result) => {
+            if (err) console.log(err);
+            socket.emit('regCorreo_ok', email);
+          })
+        })
+      }
+    })
+  })
+})
 
 // GET
 app.get("/", (req, res) => {

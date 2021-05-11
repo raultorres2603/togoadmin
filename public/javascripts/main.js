@@ -1,3 +1,17 @@
+var socket = io();
+
+
+socket.on('regCorreo_ok', (email) => {
+  document.getElementById('alertaCorreo').innerText = `Se ha añadido el correo ${email} para TogoAdmin`;
+  $('#alertaCorreo').fadeToggle(500, () => {
+    setTimeout(() => {
+      $('#alertaCorreo').fadeToggle(500);
+    }, 1500)
+  })
+})
+
+
+
 $(document).ready(function () {
   $("#logo").fadeIn(1000);
   $("#menu_ini").fadeIn(3000);
@@ -14,6 +28,14 @@ function compLog(username, password) {
     $("#entrar").fadeIn(1000);
   } else {
     $("#entrar").fadeOut(1000);
+  }
+}
+
+function compEmail(email, password) {
+  if (email.length > 0 && password.length > 0) {
+    $('#regCorreo').attr('disabled', false);
+  } else {
+    $('#regCorreo').attr('disabled', true);
   }
 }
 
@@ -69,4 +91,8 @@ function logout() {
 
 function mostrarModal(modal) {
   $(modal).modal('show');
+}
+
+function regCorreo(email, pass) {
+  socket.emit('regCorreo', email, pass);
 }
