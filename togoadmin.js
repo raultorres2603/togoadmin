@@ -31,6 +31,8 @@ const bcrypt = require("bcryptjs");
 const { connect } = require("http2");
 const saltRounds = 10;
 const port = 3000;
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 var con_togo = mysql.createPool({
   host: `${process.env.IP_SERV}`,
@@ -38,6 +40,24 @@ var con_togo = mysql.createPool({
   password: `${process.env.PAS}`,
   database: `${process.env.DB}`,
 });
+
+var emailTogo;
+var passTogo;
+
+con_togo.query(`SELECT * FROM correo_togo`, (err, result) => {
+  if (err) console.log(err);
+  emailTogo = result.email;
+  passTogo = result.pass;
+})
+
+var transporter = nodemailer.createTransport(smtpTransport({
+  service: 'gmail',
+  host: 'smtp.gmail.com',
+  auth: {
+    user: `${emailTogo}`,
+    pass: `${passTogo}`
+  }
+}));
 
 app.use(express.static(__dirname + "/public"));
 app.use(
@@ -52,6 +72,9 @@ app.set("view engine", "pug");
 app.use(compression());
 
 // SOCKETS
+
+
+
 
 io.on('connection', (socket) => {
   socket.on('regCorreo', (email, pass) => {
@@ -68,21 +91,15 @@ io.on('connection', (socket) => {
           
         })
       } else {
-        var encriptar_contra = new Promise((resolve, reject) => {
-          bcrypt.genSalt(saltRounds, function (err, salt) {
-            bcrypt.hash(pass, salt, function (err, hash) {
-              if (err) reject(err);
-              resolve(hash);
-            });
-          });
-        });
 
-        encriptar_contra.then((pass_encr) => {
-          con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass_encr}')`, (err, result) => {
+          con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass}')`, (err, result) => {
             if (err) console.log(err);
+            emailTogo = email;
+            passTogo = pass;
+
+            console.log(`EmailTogo: ${emailTogo} | PassTogo: ${passTogo}`);
             socket.emit('regCorreo_ok', email);
           })
-        })
       }
     })
   })

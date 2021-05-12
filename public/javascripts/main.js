@@ -96,3 +96,8 @@ function mostrarModal(modal) {
 function regCorreo(email, pass) {
   socket.emit('regCorreo', email, pass);
 }
+
+function enviarBack(valores) {
+  console.log(valores);
+  
+}

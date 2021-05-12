@@ -127,11 +127,25 @@ html(lang="en")
                             .row 
                                 h4 Configuración del servicio de correo
                             .row.mt-1
-                                .col-auto
+                                .col-4
                                     input#emailTogo.form-control.form-control-lg.text-center(type="email", name="emailTogo" placeholder="Email" oninput="compEmail($('#emailTogo').val(), $('#passTogo').val())")
                                     small#emailHelp.form-text Email que usará TogoAdmin para enviarte copias de seguridad.
-                                .col-auto
+                                .col-4
                                     input#passTogo.form-control.form-control-lg.text-center(type="password", name="passTogo" placeholder="Password" oninput="compEmail($('#emailTogo').val(), $('#passTogo').val())")
                                     small#emailHelp.form-text Password del email introducido anteriormente.
-                                .col-auto 
+                                .col-4 
                                     button#regCorreo.btn.btn-success.btn-lg.btn-block(type="button" onclick="regCorreo($('#emailTogo').val(), $('#passTogo').val())" disabled) Registrar
+                            hr
+                            .row.text-center
+                                h4 Selección de backups
+                            .row.mt-1
+                                .col-4
+                                    select#selBackups.form-control.form-control-lg(name="selBackups" size="5" multiple)
+                                        option(value="DNS") DNS 
+                                        option(value="host") Archivo host
+                                        option(value="host") Redes
+                                .col-4 
+                                    input#emailTo.form-control.form-control-lg.text-center(type="email", name="emailTo" placeholder="Email")
+                                    small#emailToHelp.form-text Email donde se enviarán los datos
+                                .col-4
+                                        button#enviarBack.btn.btn-success.btn-lg.btn-block(type="button" name="enviarBack" onclick="enviarBack($('#selBackups').val())") Enviar backup
