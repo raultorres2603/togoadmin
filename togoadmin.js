@@ -61,21 +61,10 @@ io.on('connection', (socket) => {
         con_togo.query(`TRUNCATE TABLE correo_togo`, (err, result) => {
           if (err) console.log(err);
 
-          var encriptar_contra = new Promise((resolve, reject) => {
-            bcrypt.genSalt(saltRounds, function (err, salt) {
-              bcrypt.hash(pass, salt, function (err, hash) {
-                if (err) reject(err);
-                resolve(hash);
-              });
-            });
-          });
-
-          encriptar_contra.then((pass_encr) => {
-            con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass_encr}')`, (err, result) => {
+            con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass}')`, (err, result) => {
               if (err) console.log(err);
               socket.emit('regCorreo_ok', email);
             })
-          })
           
         })
       } else {
