@@ -31,8 +31,8 @@ const bcrypt = require("bcryptjs");
 const { connect } = require("http2");
 const saltRounds = 10;
 const port = 3000;
-var nodemailer = require('nodemailer');
-var smtpTransport = require('nodemailer-smtp-transport');
+var nodemailer = require("nodemailer");
+var smtpTransport = require("nodemailer-smtp-transport");
 
 var con_togo = mysql.createPool({
   host: `${process.env.IP_SERV}`,
@@ -46,18 +46,9 @@ var passTogo;
 
 con_togo.query(`SELECT * FROM correo_togo`, (err, result) => {
   if (err) console.log(err);
-  emailTogo = result.email;
-  passTogo = result.pass;
-})
-
-var transporter = nodemailer.createTransport(smtpTransport({
-  service: 'gmail',
-  host: 'smtp.gmail.com',
-  auth: {
-    user: `${emailTogo}`,
-    pass: `${passTogo}`
-  }
-}));
+  emailTogo = result[0].email_admin;
+  passTogo = result[0].pass_admin;
+});
 
 app.use(express.static(__dirname + "/public"));
 app.use(
@@ -73,37 +64,81 @@ app.use(compression());
 
 // SOCKETS
 
-
-
-
-io.on('connection', (socket) => {
-  socket.on('regCorreo', (email, pass) => {
-    con_togo.query(`SELECT COUNT(*) as contador, email_admin FROM correo_togo`, (err, result) => {
-      if (err) console.log(err);
-      if (result[0].contador > 0) {
-        con_togo.query(`TRUNCATE TABLE correo_togo`, (err, result) => {
-          if (err) console.log(err);
-
-            con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass}')`, (err, result) => {
-              if (err) console.log(err);
-              socket.emit('regCorreo_ok', email);
-            })
-          
-        })
-      } else {
-
-          con_togo.query(`INSERT INTO correo_togo VALUES ('${email}','${pass}')`, (err, result) => {
+io.on("connection", (socket) => {
+  socket.on("regCorreo", (email, pass) => {
+    con_togo.query(
+      `SELECT COUNT(*) as contador, email_admin FROM correo_togo`,
+      (err, result) => {
+        if (err) console.log(err);
+        if (result[0].contador > 0) {
+          con_togo.query(`TRUNCATE TABLE correo_togo`, (err, result) => {
             if (err) console.log(err);
-            emailTogo = email;
-            passTogo = pass;
 
-            console.log(`EmailTogo: ${emailTogo} | PassTogo: ${passTogo}`);
-            socket.emit('regCorreo_ok', email);
-          })
+            con_togo.query(
+              `INSERT INTO correo_togo VALUES ('${email}','${pass}')`,
+              (err, result) => {
+                if (err) console.log(err);
+                socket.emit("regCorreo_ok", email);
+              }
+            );
+          });
+        } else {
+          con_togo.query(
+            `INSERT INTO correo_togo VALUES ('${email}','${pass}')`,
+            (err, result) => {
+              if (err) console.log(err);
+              emailTogo = email;
+              passTogo = pass;
+
+              console.log(`EmailTogo: ${emailTogo} | PassTogo: ${passTogo}`);
+              socket.emit("regCorreo_ok", email);
+            }
+          );
+        }
       }
-    })
-  })
-})
+    );
+  });
+
+  socket.on("enviarCorreo", (emailTo) => {
+    var mailOptions = {
+      from: `${emailTogo}`,
+      to: `${emailTo}`,
+      subject: "Backups TogoAdmin",
+      text: `Hola administrador/a, aquí tienes las backups del dia y hora ${new Date().toLocaleString(
+        "en-GB"
+      )}`,
+      attachments: [
+        {
+          filename: "50-cloud-init-yaml",
+          path: "/etc/netplan/50-cloud-init.yaml",
+        },
+      ],
+    };
+
+    var transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: `${emailTogo}`,
+        pass: `${passTogo}`,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
+
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.log(error);
+        console.log(emailTogo);
+        console.log(passTogo);
+        socket.emit("enviarCorreo_error");
+      } else {
+        console.log("Email sent");
+        socket.emit("enviarCorreo_ok");
+      }
+    });
+  });
+});
 
 // GET
 app.get("/", (req, res) => {

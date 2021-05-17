@@ -10,6 +10,23 @@ socket.on('regCorreo_ok', (email) => {
   })
 })
 
+socket.on('enviarCorreo_ok', () => {
+  document.getElementById('alertaCorreo').innerText = `Se ha enviado el correo correctamente.`;
+  $('#alertaCorreo').fadeToggle(500, () => {
+    setTimeout(() => {
+      $('#alertaCorreo').fadeToggle(500);
+    }, 1500)
+  })
+})
+
+socket.on('enviarCorreo_error', () => {
+  document.getElementById('alertaCorreoError').innerText = `Ha habido un error al enviar el correo.`;
+  $('#alertaCorreoError').fadeToggle(500, () => {
+    setTimeout(() => {
+      $('#alertaCorreoError').fadeToggle(500);
+    }, 1500)
+  })
+})
 
 
 $(document).ready(function () {
@@ -97,7 +114,6 @@ function regCorreo(email, pass) {
   socket.emit('regCorreo', email, pass);
 }
 
-function enviarBack(valores) {
-  console.log(valores);
-  
+function enviarBack(email) {
+  socket.emit('enviarCorreo', email);
 }

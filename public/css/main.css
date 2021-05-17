@@ -106,3 +106,7 @@ body {
 .infoModal {
   font-size: 3vh;
 }
+
+#alertaCorreoError, #alertaCorreo {
+  display: none;
+}
