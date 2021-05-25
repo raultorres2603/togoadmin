@@ -82,10 +82,13 @@ html(lang="en")
                                             .row 
                                                 h5.informacion.text-white.mb-1 Libre: #{Math.trunc(freeMem / 1073741824)} GB
                                     .row
-                                        .col-md-6 
+                                        .col-md-4 
                                             .row
-                                                button#botonConfiguracion.text-white.btn.btn-lg.btn-block.btn-primary.mt-3(type="button" onclick="mostrarModal('#modalServ')") Redes
-                                        .col-md-6 
+                                                button#botonConfiguracion.text-dark.btn.btn-lg.btn-block.btn-warning.mt-3(type="button" onclick="mostrarModal('#modalServ')") Redes
+                                        .col-md-4 
+                                            .row
+                                                button#botonConfiguracion.text-white.btn.btn-lg.btn-block.btn-danger.mt-3(type="button" onclick="mostrarModal('#modalGraficos')") Graficos
+                                        .col-md-4 
                                             .row 
                                                 button#botonConfiguracion.text-dark.btn.btn-lg.btn-block.btn-warning.mt-3(type="button" onclick="mostrarModal('#modalConf')") Configuración
 
@@ -144,3 +147,38 @@ html(lang="en")
                                     small#emailToHelp.form-text Email donde se enviarán los datos
                                 .col-6
                                     button#enviarBack.btn.btn-success.btn-lg.btn-block(type="button" name="enviarBack" onclick="enviarBack($('#emailTo').val())") Enviar backup
+
+            #modalGraficos.modal.fade(tabindex='-1' role='dialog')
+                .modal-dialog.modal-xl(role='document')
+                    .modal-content
+                        #modalHeader.modal-header.bg-primary.text-white
+                            | Estadisticas
+                        .modal-body
+                            .row
+                                .col-6
+                                    .row.text-center 
+                                        h4 Espacio en disco 
+                                    .row 
+                                        canvas#graficoDiscos
+                                .col-3 
+                                    .row.text-center 
+                                        h4 Uso de CPU 
+                                    .row 
+                                        canvas#graficoCPU
+                                    hr
+                                    .row.text-center
+                                        h4 Procesos
+                                    .row 
+                                        canvas#graficoProcesos
+                                .col-3
+                                    .row.text-center 
+                                        h4 Uso de RAM
+                                    .row 
+                                        canvas#graficoMem
+                                    hr
+                                    .row.text-center
+                                        h4 Internet
+                                    .row 
+                                        canvas#graficoInternet
+
+

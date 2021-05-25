@@ -26,6 +26,25 @@ var compression = require("compression");
 require("dotenv").config();
 // Parser de formularios
 const bodyParser = require("body-parser");
+// Libreria con uso de componentes
+var osu = require('node-os-utils');
+var cpu = osu.cpu;
+var drive = osu.drive;
+var mem = osu.mem;
+var netstat = osu.netstat;
+var proc = osu.proc;
+
+var freeDisco;
+var usedDisco;
+var freeCPU;
+var usedCPU;
+var usedMem;
+var freeMem;
+var descInt;
+var subInt;
+var procTotales;
+var procZombies;
+
 // Encriptación de datos
 const bcrypt = require("bcryptjs");
 const { connect } = require("http2");
@@ -61,6 +80,49 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("views", path.join(__dirname, "/public/views"));
 app.set("view engine", "pug");
 app.use(compression());
+
+// TIEMPO REAL STATS
+
+  setInterval(() => {
+    var freeDrive = drive.free().then((infoDriveFree) => {
+      freeDisco = infoDriveFree.freePercentage;
+    })
+    var usedDrive = drive.used().then((infoDriveUsed) => {
+      usedDisco = infoDriveUsed.usedPercentage;
+    })
+
+    var freeCPUs = cpu.free().then((freeCPUss) => {
+      freeCPU = freeCPUss;
+    })
+
+    var usedCPUs = cpu.usage().then((usedCPUss) => {
+      usedCPU = usedCPUss;
+    })
+
+    var freeMems = mem.free().then((freeMemm) => {
+      freeMem = freeMemm.freeMemMb;
+    })
+
+    var usedMems = mem.used().then((usedMemm) => {
+      usedMem = usedMemm.usedMemMb;
+    })
+
+    var subidaInter = netstat.inOut().then((infoNet) => {
+      subInt = infoNet.total.outputMb;
+      descInt = infoNet.total.inputMb;
+    })
+
+    var procZom = proc.zombieProcesses().then((zombProc) => {
+      procZombies = zombProc;
+    })
+
+    var procTot = proc.totalProcesses().then((totPro) => {
+      procTotales = totPro - procZombies;
+    })
+
+    io.emit('enviarInfo', freeDisco, usedDisco, freeCPU, usedCPU, freeMem, usedMem, subInt, descInt, procTotales, procZombies);
+  }, 1000)
+
 
 // SOCKETS
 
