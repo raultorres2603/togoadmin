@@ -97,26 +97,6 @@ $("document").ready(function () {
   };
 
   graficoInt = new Chart(document.getElementById("graficoInternet"), configEth);
-
-  var labelsProc = ["Totales", "Zombies",];
-  var dataProc = {
-    labels: labelsProc,
-    datasets: [
-      {
-        label: "Nº de procesos",
-        backgroundColor: ["rgb(0, 224, 255)", "rgb(255, 0, 0)"],
-        data: [0, 0],
-      }
-    ]
-  };
-
-  var configProc = {
-    type: "doughnut",
-    data: dataProc,
-    options: {responsive: true},
-  };
-
-  graficoProc = new Chart(document.getElementById("graficoProcesos"), configProc);
 });
 
 
@@ -156,12 +136,6 @@ socket.on("enviarInfo", (freeDisco, usedDisco, freeCPU, usedCPU, freeMems, usedM
   graficoInt.data.datasets[0].data[1] = subInt;
 
   graficoInt.update();
-
-  // Actualizar gráfico Procesos
-  graficoProc.data.datasets[0].data[0] = procTotales;
-  graficoProc.data.datasets[0].data[1] = procZombies;
-
-  graficoProc.update();
 });
 
 socket.on("enviarCorreo_ok", () => {

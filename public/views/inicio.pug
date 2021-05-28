@@ -102,19 +102,19 @@ html(lang="en")
                                 | Interfaces
                             hr
                             .row 
-                                .col.text-center 
+                                .col-6.text-center 
                                     h4 IPv4
                                     hr
-                                .col.text-center 
+                                .col-6.text-center 
                                     h4 IPv6
                                     hr
                             each interfaz in interfaces
                                 .row
-                                    .col
+                                    .col-6
                                         h5.infoModal #{interfaz[0].address}
                                         h5.infoModal #{interfaz[0].netmask}
                                         h5.infoModal #{interfaz[0].cidr}
-                                    .col
+                                    .col-6
                                         h5.infoModal #{interfaz[1].address}
                                         h5.infoModal #{interfaz[1].netmask}
                                         h5.infoModal.mb-4 #{interfaz[1].cidr}
@@ -160,25 +160,25 @@ html(lang="en")
                                         h4 Espacio en disco 
                                     .row 
                                         canvas#graficoDiscos
-                                .col-3 
-                                    .row.text-center 
-                                        h4 Uso de CPU 
-                                    .row 
-                                        canvas#graficoCPU
+                                .col-6
+                                    .row
+                                        .col-6
+                                            .row.text-center 
+                                                h4 Uso de CPU 
+                                            .row 
+                                                canvas#graficoCPU
+                                    
+                                        .col-6
+                                            .row.text-center 
+                                                h4 Uso de RAM
+                                            .row 
+                                                canvas#graficoMem
                                     hr
-                                    .row.text-center
-                                        h4 Procesos
                                     .row 
-                                        canvas#graficoProcesos
-                                .col-3
-                                    .row.text-center 
-                                        h4 Uso de RAM
-                                    .row 
-                                        canvas#graficoMem
-                                    hr
-                                    .row.text-center
-                                        h4 Internet
-                                    .row 
-                                        canvas#graficoInternet
+                                        .col-12
+                                            .row.text-center
+                                                h4 Internet
+                                            .row 
+                                                canvas#graficoInternet
 
 

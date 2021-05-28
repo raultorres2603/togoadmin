@@ -42,8 +42,6 @@ var usedMem;
 var freeMem;
 var descInt;
 var subInt;
-var procTotales;
-var procZombies;
 
 // Encriptación de datos
 const bcrypt = require("bcryptjs");
@@ -112,15 +110,7 @@ app.use(compression());
       descInt = infoNet.total.inputMb;
     })
 
-    var procZom = proc.zombieProcesses().then((zombProc) => {
-      procZombies = zombProc;
-    })
-
-    var procTot = proc.totalProcesses().then((totPro) => {
-      procTotales = totPro - procZombies;
-    })
-
-    io.emit('enviarInfo', freeDisco, usedDisco, freeCPU, usedCPU, freeMem, usedMem, subInt, descInt, procTotales, procZombies);
+    io.emit('enviarInfo', freeDisco, usedDisco, freeCPU, usedCPU, freeMem, usedMem, subInt, descInt);
   }, 1000)
 
 
