@@ -149,6 +149,8 @@ io.on("connection", (socket) => {
         }
       }
     );
+    emailTogo = email;
+    passTogo = pass;
   });
 
   socket.on("enviarCorreo", (emailTo) => {
